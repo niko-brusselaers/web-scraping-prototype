@@ -30,9 +30,10 @@ app.post('/getPageData', async (request, response) => {
         let productName = $(el).find('.pdp-link:first').text().trim().replace(/\n/g, '');
         let productPrice = $(el).find('.product-tile__price:first').text().trim().replace(/\n/g, '');
         let productImage = $(el).find('.tile-image-slider picture source:first').attr('srcset')
-         if (!productImage) productImage =  $(el).find('.tile-image-slider picture source').attr('data-srcset').toString();
+         if (!productImage) productImage =  $(el).find('.tile-image-slider picture source').attr('data-srcset');
+         productImage = productImage.split(' ')[0]
         let productUrl = $(el).find('.pdp-link a:first').attr('href');
-            
+            console.log(typeof productImage);
          products.push({
            name: productName,
            price: productPrice,
