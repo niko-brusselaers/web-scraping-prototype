@@ -27,11 +27,11 @@ app.post('/getPageData', async (request, response) => {
       const $ = load(data);
       const products = []
        $('.product-tile').each((i, el) => {
-        const productName = $(el).find('.pdp-link:first').text().trim().replace(/\n/g, '');
-        const productPrice = $(el).find('.product-tile__price:first').text().trim().replace(/\n/g, '');
-        const productImage = $(el).find('.tile-image-slider picture source:first').attr('srcset');
-        const productUrl = $(el).find('.pdp-link a:first').attr('href');
-        console.log(productImage);
+        let productName = $(el).find('.pdp-link:first').text().trim().replace(/\n/g, '');
+        let productPrice = $(el).find('.product-tile__price:first').text().trim().replace(/\n/g, '');
+        let productImage = $(el).find('.tile-image-slider picture source:first').attr('srcset')
+         if (!productImage) productImage =  $(el).find('.tile-image-slider picture source').attr('data-srcset').toString();
+        let productUrl = $(el).find('.pdp-link a:first').attr('href');
             
          products.push({
            name: productName,
