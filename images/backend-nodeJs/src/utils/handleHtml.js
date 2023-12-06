@@ -6,21 +6,23 @@ async function handleHTML(htmlData, dataToExtract) {
         const pageData = load(htmlData);
         const product = [];
 
-        const tesdata = pageData(dataToExtract.selector).each((i, el) => {
+        pageData(dataToExtract.selector).each((i, el) => {
+            const item = {}; // Create an object for each iteration
+
             dataToExtract.childselector.forEach((child, index) => {
                 let variableName = dataToExtract.variablesNames[index];
+
                 if (child.attribute) {
                     let data = pageData(el).find(child.selector).attr(child.attribute);
-                    if (data) product[variableName] = data;
-
+                    if (data) item[variableName] = data;
                 } else {
                     let data = pageData(el).find(child.selector).text().trim().replace(/\n/g, '');
-                    product[variableName] = data;
+                    item[variableName] = data;
                 }
             });
-        });
 
-        console.log(pageData);
+            product.push(item); // Push the object into the array
+        });
 
         return product;
 

@@ -24,8 +24,8 @@ app.post('/getPageData', async (request, response) => {
     const { url } = request.body;
     const htmlData = await axios.get(url)
     .then((res) => res.data)
-    .then((data) => {
-      const pageData = handleHTML(data, 
+    .then(async (data) => {
+      const pageData = await handleHTML(data, 
         { selector: '.product-tile', 
           childselector:[
             { selector: '.pdp-link:first'},
@@ -34,31 +34,8 @@ app.post('/getPageData', async (request, response) => {
             { selector: '.pdp-link a:first', attribute: 'href'}],
           variablesNames: ['name', 'price', 'image', 'url']
         })
-      // console.log(pageData);
-
       
-      // response.send(pageData);
-
-      // const $ = load(data);
-      // const products = []
-      //  $('.product-tile').each((i, el) => {
-      //   let productName = $(el).find('.pdp-link:first').text().trim().replace(/\n/g, '');
-      //   let productPrice = $(el).find('.product-tile__price:first').text().trim().replace(/\n/g, '');
-      //   let productImage = $(el).find('.tile-image-slider picture source:first').attr('srcset')
-      //    if (!productImage) productImage =  $(el).find('.tile-image-slider picture source').attr('data-srcset');
-      //    productImage = productImage.split(' ')[0]
-      //   let productUrl = $(el).find('.pdp-link a:first').attr('href');
-      //       console.log(typeof productImage);
-      //    products.push({
-      //      name: productName,
-      //      price: productPrice,
-      //      image: productImage,
-      //      url: productUrl
-      //    });
-      // });
-
-      //send response to client
-      // response.send(products);
+      response.send(pageData);
     })
 
     
