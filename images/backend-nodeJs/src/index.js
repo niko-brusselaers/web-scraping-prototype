@@ -78,6 +78,33 @@ app.post('/getPageData', async (request, response) => {
           }
           break;
 
+        case "dreamland.be":
+        case "dreamland":
+          dataToExtract = {
+            selector: '.product',
+            childselector: [
+              { selector: '.product_name' },
+              { selector: '.price__main' },
+              { selector: '.image img', attribute: 'src' },
+            ],
+            variablesNames: ['name', 'price', 'image']
+          }
+          break;
+
+        case "gamma.be":
+        case "gamma":
+          dataToExtract = {
+            selector: '.product-tile-container',
+            childselector: [
+              { selector: '.product__title' },
+              { selector: '.product-tile-price-current' },
+              { selector: '.product-tile-image img', attribute: 'src' },
+              { selector: '.click-mask', attribute: 'href' }
+            ],
+            variablesNames: ['name', 'price', 'image', 'url']
+          }
+          break;
+
         default:
           //if website domain name is not supported throw error
           throw new Error('website domain name is not supported');
