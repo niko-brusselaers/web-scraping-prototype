@@ -16,6 +16,7 @@ async function handleHTML(htmlData, dataToExtract) {
 
                 if (child.attribute) {
                     let data = pageData(el).find(child.selector).attr(child.attribute);
+                    if(child.attribute == 'href') data = 'https://' + dataToExtract.domainName + data;
                     if (data) item[variableName] = data;
                 } else {
                     let data = pageData(el).find(child.selector).text().trim().replace(/\n/g, '');

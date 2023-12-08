@@ -39,6 +39,7 @@ app.post('/getPageData', async (request, response) => {
         case "torfs.be":
         case "torfs":
           dataToExtract = {
+            domainName: 'torfs.be',
             selector: '.product-tile',
             childselector: [
               { selector: '.pdp-link:first' },
@@ -67,6 +68,7 @@ app.post('/getPageData', async (request, response) => {
         case "bol.com":
         case "bol":
           dataToExtract = {
+            domainName: 'bol.com',
             selector: '.product-item--row',
             childselector: [
               { selector: '.product-title' },
@@ -81,6 +83,7 @@ app.post('/getPageData', async (request, response) => {
         case "dreamland.be":
         case "dreamland":
           dataToExtract = {
+            domainName: 'dreamland.be',
             selector: '.product',
             childselector: [
               { selector: '.product_name' },
@@ -94,6 +97,7 @@ app.post('/getPageData', async (request, response) => {
         case "gamma.be":
         case "gamma":
           dataToExtract = {
+            domainName: 'gamma.be',
             selector: '.product-tile-container',
             childselector: [
               { selector: '.product__title' },
