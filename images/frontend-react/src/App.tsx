@@ -27,21 +27,28 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleForm}>
+        <div>
         <label htmlFor="webDomain">please select web domain to scrap</label>
         <select name="webDomain" id="Webdomain" onChange={(event) => {setWebDomain(event.currentTarget.value)}}>
           <option value="torfs.be">torfs.be</option>
           <option value="bol.com">bol.com</option>
-          <option value="gamme.be">gamma.be</option>
+          <option value="gamma.be">gamma.be</option>
           <option value="dreamland.be">dreamland.be</option>
         </select>
+        </div>
+        <div>
         <label htmlFor="webURL">please enter url to scrape</label>
         <input type="text" name="webURL" id="webURL" onChange={(event)=> {setWebURL(event.currentTarget.value)}}/>
-        <button type="submit">submit</button>
+        </div>
+        
+        <div>
+          <button type="submit">submit</button>
+          </div>
       </form>
-      <div>
+      <div className='productList'>
         {scrapedData ? scrapedData.map((data: any, index: number) => {
           return(
-            <div key={index}>
+            <div className='productItem' key={index}>
               {data.image ? <img src={data.image} alt={data.title}/>: null} 
               {data.name ? <h2>{data.name}</h2> : null}
               {data.price ? <p>{data.price}</p>: null}
