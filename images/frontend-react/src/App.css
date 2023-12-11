@@ -56,13 +56,23 @@ div.productList{
 div.productItem{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 40em;
   margin: 2em;
   background-color: #373c44;
   padding: 1em;
   border-radius: 25px;
 
+
+}
+
+ h2, p {
+  color: white;
+}
+
+a{
+  color: #61dafb;
+  text-decoration: none;
 
 }
 

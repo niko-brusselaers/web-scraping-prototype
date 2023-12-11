@@ -50,9 +50,11 @@ function App() {
           return(
             <div className='productItem' key={index}>
               {data.image ? <img src={data.image} alt={data.title}/>: null} 
-              {data.name ? <h2>{data.name}</h2> : null}
-              {data.price ? <p>{data.price}</p>: null}
-              {data.url ? <a href={data.url}>product page</a> : null}
+              <div>
+                {data.name ? <h2>{data.name}</h2> : null}
+                {data.price ? <p>{data.price}</p>: null}
+                {data.url ? <a href={data.url}>product page</a> : null}
+              </div>
             </div>
           )
         }) : null}

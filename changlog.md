@@ -46,3 +46,12 @@
                 - dreamland.be
                 - gamma.be
                 - torfs.be
+
+## [0.2.0] - 10-12-2023
+
+### added
+
+    -frontend:
+
+        - form to submit url to scrape
+        - list of scraped data
