@@ -7,16 +7,21 @@ const API_URL = 'http://localhost:4000'
 function App() {
   const [webDomain, setWebDomain] = useState<string>('torfs.be')
   const [webURL, setWebURL] = useState<string>('')
+  const [scrapedData, setScrapedData] = useState<[]>([])
 
   const handleForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios.post(`${API_URL}/getPageData`, {
       websiteDomain: webDomain,
-      url: webURL
+      url: webURL,
     })
-    .then((data) => {
-      console.log(data)
+    .then((response) => {
+      console.log(response.data.data);
+      setScrapedData(response.data.data);
     })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
   }
 
   return (
@@ -33,6 +38,18 @@ function App() {
         <input type="text" name="webURL" id="webURL" onChange={(event)=> {setWebURL(event.currentTarget.value)}}/>
         <button type="submit">submit</button>
       </form>
+      <div>
+        {scrapedData ? scrapedData.map((data: any, index: number) => {
+          return(
+            <div key={index}>
+              {data.image ? <img src={data.image} alt={data.title}/>: null} 
+              {data.name ? <h2>{data.name}</h2> : null}
+              {data.price ? <p>{data.price}</p>: null}
+              {data.url ? <a href={data.url}>product page</a> : null}
+            </div>
+          )
+        }) : null}
+      </div>
     </div>
   );
 }
